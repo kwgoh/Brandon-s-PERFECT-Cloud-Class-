@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+  <header>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.min.js"></script>
+  </header>
+  
+  <script language="javascript" type="text/javascript">
+      angular.module('app', ['ngResource']);
+      function Controller($scope, $resource) {
+        $scope.newInput = "";        
+        $scope.initial = ["Welcome to Brandon's Perfect Plunker Class!", "Stuff you enter in the textbox will be deposited after these entries!", "Click 'Initialize' to reset these messages.", "Have fun!"];
+        $scope.messages = ["Welcome to Brandon's Perfect Plunker Class!", "Stuff you enter in the textbox will be deposited after these entries!", "Click 'Initialize' to reset these messages.", "Have fun!"];
+        $scope.math = 0;
+        
+        $scope.plus = function(number) {
+          $scope.math += number;
+        }
+        
+        $scope.add = function() {
+          if ($scope.newInput != "") {
+            $scope.messages.push($scope.newInput);
+          }
+        }
+        
+        $scope.reset = function() {
+          $scope.messages = "";
+          $scope.messages = $scope.initial;
+          
+        }
+      }
+  </script>
+  <head lang="en">
+    <meta charset="utf-8">
+    <title>Brandon's Perfect Plunker Class!</title>
+  </head>
+  
+  <body ng-controller="Controller">
+      <img style="float:left" src="https://lh3.googleusercontent.com/L2lxWHWaS6cY2dovuTDeebbuj0516enijEiLmcP0rcvqft05hOf9F809RXmm0XSvsKuqO9vJcG21tZ0T59AqNbYrb4oju22ia2Br7qdgg3zLYUBlHRM"></img>
+      <h1>Welcome to Brandon's Perfect Plunker Class!</h1>
+      <hr><br>
+      <input type="text" ng-model="newInput">
+      <input type="submit" ng-click="add()" value="Submit!">
+      <input type="reset" ng-click="reset()" value="Initialize.">
+      <hr>
+      {{math}}
+      <input type="button" ng-click="add('2')" value="+2">
+      <input type="button" ng-click="add('1')" value="+1">
+      <input type="button" ng-click="add('0')" value="+0">
+      <input type="button" ng-click="add('-1')" value="-1">
+      <input type="button" ng-click="add('-2')" value="-2">
+      <br>
+      <hr>
+      Messages: <br>
+      <ul>
+        <li ng-repeat="message in messages">
+          {{message}}
+        </li>
+      </ul>
+  </body>
+  
+</html>
